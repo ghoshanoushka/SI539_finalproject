@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- set meta for media query-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- link style css and favicon for the webpage-->
+    <link rel="shortcut icon" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- remove the wand effect of the index page-->
+    <style>
+        :root {
+            cursor: auto;
+            --X: initial;
+            --Y: initial;
+        }
+
+        :root::before {
+            content: none;
+        }
+    </style>
+
+    <script src="scripts/audio.js"></script>
+    <script src="scripts/sorting-quiz.js"></script>
+
+    <title>Memory Game</title>
+</head>
+
+<body class="quizzie-body">
+    <audio autoplay loop id="player">
+        <source src="assets/audios/HP_theme.mp3">
+    </audio>
+
+    <!-- div for audio controls -->
+    <header class="controls">
+        <button onclick="document.getElementById('player').play()">
+            <img src="./assets/control_buttons/play.svg" alt="Play">
+        </button>
+        <button onclick="document.getElementById('player').pause()">
+            <img src="./assets/control_buttons/pause.svg" alt="Pause">
+        </button>
+        <button onclick=increaseVolume()>
+            <img src="./assets/control_buttons/volup.svg" alt="Volume Up">
+        </button>
+        <button onclick=decreaseVolume()>
+            <img src="./assets/control_buttons/voldown.svg" alt="Volume Down">
+        </button>
+        <button onclick="window.location.href='index.html'">
+            <img src="./assets/control_buttons/home.svg" alt="Home Page">
+        </button>
+    </header>
+
+    <main class="main quizzie">
+        <div id="quizzie">
+            <h1>Sorting Quiz</h1>
+            <ul class="quiz-step current">
+                <h2>
+                    Question #1: <br> There is a three-headed dog between you and your best
+                    friend, what do you do next?
+                </h2>
+
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Try to take on the dog myself, distracting it's view from my
+                            friend.
+                        </p>
+                    </div>
+                </button>
+
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            I use my exceptional flying skills to zoom past the dog -
+                            leaving my friend in despair.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #2: <br> You find yourself standing at a mysterious locked
+                    door, what do you do?
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            You will leave the door alone and act like it doesn't exist.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Come back later when no one is around and try to find your way
+                            through it.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #3: <br> Where do you see yourself working?
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            In a warm, dry library, surrounded by books.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Alone in a cold, dark dungeon.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #4: <br> If you had to choose one potion to use for the rest
+                    of your life, which would it be?
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Elixir to Induce Euphoria - A potion that induces a sense of
+                            inexplicable, irrational happiness upon the drinker.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Forgetfulness Potion - A potion which caused an unknown degree of memory loss in the
+                            drinker.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #5: <br> You have a big exam tomorrow, how do you prepare?
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Study profusely and don't sleep at all.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Why worry when you can do nothing.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #6: <br> While shopping in Diagon Alley you realize you were
+                    undercharged when purchasing a wand from Ollivanders. What do you
+                    do?
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Return to Ollivanders and give Mr. Garrick the difference.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Keep the money - use it for Bertie Bott's Beans.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #7: <br> Choose one of the following pets for a companion:
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            An Owl - Spirit Messenger of Godric Gryffindor.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            A Cat - Creatures most commonly associated with Magic.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #8: <br> If you could bring back memories with one smell, what
+                    would it be?
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            The smell of a delicious pepperoni pizza.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            The putrid and rotting smell of sweaty feet.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #9: <br> Your close friend is being held by Death Eaters in
+                    the basement dungeon of the Malfoy mansion. You:
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Gather together Dumbledore's Army and prepare to fight your way
+                            through the dungeon to save your friend.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Abandon your friend to their unfortunate fate, leaving them helpless and at the mercy of the
+                            Death Eaters.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul class="quiz-step">
+                <h2>
+                    Question #10: <br> Severus Snape: Friend or Foe?
+                </h2>
+                <button class="quiz-answer low-value" data-quizIndex="2">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Foe: Snape has always disliked Harry.
+                        </p>
+                    </div>
+                </button>
+                <button class="quiz-answer high-value" data-quizIndex="4">
+                    <div class="answer-wrap">
+                        <p class="answer-text">
+                            Friend: Dumbledore trusted Snape blindly.
+                        </p>
+                    </div>
+                </button>
+            </ul>
+            <ul id="results" class="hidden">
+                <li>
+                    <h1>Your House is:</h1>
+                    <p class="desc"></p>
+                </li>
+            </ul>
+        </div>
+
+        <div id="sorting-hat-container">
+            <img src="assets/talking-hat.gif" alt="Sorting Hat" loop>
+        </div>
+    </main>
+
+    <footer>
+        &copy; <span id="year"></span> - Anoushka Ghosh
+    </footer>
+
+    <!-- update the copyright year -->
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,382 @@
+:root {
+    cursor: url("../assets/wand.png"), auto;
+    --X: 40vh;
+    --Y: 45vh;
+}
+
+:root::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: radial-gradient(circle 10vmax at var(--X) var(--Y),
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.5) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../assets/backgrounds/hogwarts.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
+    font-size: 20px;
+    font-family: "Times New Roman", "Arial Narrow", Arial, sans-serif;
+}
+
+
+footer {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    z-index: 10;
+}
+
+.main {
+    padding-bottom: 50px;
+}
+
+.controls {
+    display: inline-flex;
+    justify-content: right;
+    gap: 1vh;
+    margin: 1vh;
+    z-index: 10;
+}
+
+.controls button {
+    background-color: grey;
+    border: none;
+    border-radius: 10px;
+    width: 6vh;
+    height: 6vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls button:hover {
+    background-color: gold;
+    color: black;
+}
+
+.controls button img {
+    max-width: 4vh;
+}
+
+.headliner {
+    text-align: center;
+}
+
+.headliner img {
+    max-width: 30%;
+    transition: transform 0.2s;
+}
+
+.headliner img:hover {
+    transform: scale(0.9);
+}
+
+.games {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5vw;
+    margin-top: 2%;
+}
+
+.game-card {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(168, 110, 110, 0.1);
+    padding: 10px;
+    transition: transform 0.1s;
+}
+
+.game-card:focus-within,
+.game-card:hover {
+    transform: scale(1.1);
+}
+
+.game-card:hover button,
+.game-card:focus-within button {
+    background-color: #01306a;
+    color: gold;
+    transform: scale(0.9);
+}
+
+.game-card a {
+    grid-row: 1;
+    margin: auto;
+    padding: 1em 1em 1em 1em;
+    cursor: inherit;
+    transition: transform 0.1s;
+}
+
+.game-card img {
+    height: 150px;
+}
+
+.game-card button {
+    grid-row: 2;
+    background-color: gold;
+    color: #01306a;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: "Times New Roman", "Arial Narrow", Arial, sans-serif;
+    padding: 10px;
+    transition: transform 0.1s;
+    cursor: inherit;
+}
+
+/* CSS specifically for memory-game.html */
+.score {
+    color: white;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.memory-board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+}
+
+.memory-board img {
+    transition: transform 0.3s ease;
+    /* Add smooth flipping effect */
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* CSS specifically for memory-game.html */
+.get-sorted-headliner img {
+    max-width: 50%;
+    vertical-align: bottom;
+}
+
+.headliner h1 {
+    color: gold;
+    background-color: rgba(1, 48, 106, 0.5);
+    /* Changed background color to have opacity */
+    margin: 0 0.5em 1em 0.5em;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.get-sorted-game-card {
+    width: 30%;
+}
+
+/* CSS specifically for sorting-quiz.html */
+.quizzie-body {
+    background-color: rgba(39, 26, 26, 0.714);
+    background-image: url('../assets/backgrounds/sortingquizbackground.png');
+    background-blend-mode: darken;
+    color: white;
+    text-align: center;
+    justify-content: center;
+}
+
+.quizzie {
+    align-self: center;
+    position: absolute;
+}
+
+#quizzie h1 {
+    color: gold;
+    margin-top: 5vh;
+}
+
+#quizzie ul {
+    display: none;
+    list-style: none;
+    padding-inline-start: 0px;
+    width: 85%;
+    margin: auto;
+}
+
+#quizzie ul.current {
+    display: block;
+}
+
+#quizzie ul button {
+    display: inline-block;
+    width: 45%;
+    border: none;
+    border-radius: 10px;
+    background-color: gold;
+    margin: 10px;
+    padding: 10px;
+    color: #01306a;
+    transition: transform 0.1s;
+    cursor: inherit;
+    font-size: 20px;
+    font-family: "Times New Roman", "Arial Narrow", Arial, sans-serif;
+    height: 12vh;
+    vertical-align: middle;
+    justify-content: center;
+}
+
+#quizzie ul button:hover,
+#quizzie ul button:focus-within {
+    color: gold;
+    background-color: #01306a;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+#sorting-hat-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+}
+
+#sorting-hat-container.show {
+    display: block;
+}
+
+#sorting-hat-container img {
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+}
+
+/* CSS specifically for memory-game.html */
+.instruction p {
+    background-color: #013a586f;
+    text-align: center;
+    color: gold;
+    font-family: "Times New Roman", Times, serif;
+    border-radius: 10px;
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    opacity: 1;
+    z-index: 1000;
+    padding: 10px;
+    max-height: 100vh;
+    max-width: 100vw;
+}
+
+.diary,
+.locket,
+.nagini,
+.ring,
+.diadem,
+.cup {
+    max-width: 50px;
+    display: flex;
+    transition: transform 0.2s;
+}
+
+/* Position individual containers */
+.diary-container,
+.locket-container,
+.nagini-container,
+.cup-container,
+.ring-container,
+.diadem-container {
+    position: absolute;
+}
+
+.diary:hover,
+.locket:hover,
+.nagini:hover,
+.ring:hover,
+.diadem:hover,
+.cup:hover {
+    transform: scale(1.1);
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;  /* Prevents clicking after fade starts */
+}
+
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #013a586f;
+    color: gold;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@media (max-width: 768px) {
+    .headliner img {
+        max-width: 50vh;
+    }
+
+    .games {
+        flex-direction: column;
+        margin: auto;
+        width: 70%;
+        gap: 2vh;
+    }
+
+    .memory-board {
+        grid-template-columns: repeat(4, 1fr);
+        width: 80%;
+    }
+
+    .get-sorted-game-card {
+        width: 100%;
+    }
+
+    #quizzie h2 {
+        font-size: 1.17em;
+    }
+
+    #quizzie ul button {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+}

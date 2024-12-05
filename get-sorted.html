@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- set meta for media query-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- link style css and favicon for the webpage-->
+    <link rel="shortcut icon" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- remove the wand effect of the index page-->
+    <style>
+        :root {
+            cursor: auto;
+            --X: initial;
+            --Y: initial;
+        }
+
+        :root::before {
+            content: none;
+        }
+    </style>
+
+    <script src="scripts/audio.js"></script>
+
+    <title>Memory Game</title>
+</head>
+
+<body style="background-image: url('assets/backgrounds/sortingceremonybg.png')">
+    <audio autoplay loop id="player">
+        <source src="assets/audios/HP_theme.mp3">
+    </audio>
+
+    <!-- div for audio controls -->
+    <header class="controls">
+        <button onclick="document.getElementById('player').play()">
+            <img src="./assets/control_buttons/play.svg" alt="Play">
+        </button>
+        <button onclick="document.getElementById('player').pause()">
+            <img src="./assets/control_buttons/pause.svg" alt="Pause">
+        </button>
+        <button onclick=increaseVolume()>
+            <img src="./assets/control_buttons/volup.svg" alt="Volume Up">
+        </button>
+        <button onclick=decreaseVolume()>
+            <img src="./assets/control_buttons/voldown.svg" alt="Volume Down">
+        </button>
+        <button onclick="window.location.href='index.html'">
+            <img src="./assets/control_buttons/home.svg" alt="Home Page">
+        </button>
+    </header>
+
+    <main class="main" style="margin:auto">
+        <div class="headliner get-sorted-headliner">
+            <img src="./assets/hat.png" alt="Hat">
+            <h1>
+                Welcome to the Sorting Quiz!
+            </h1>
+        </div>
+        <div class="games">
+            <div class="game-card get-sorted-game-card">
+                <button onclick="window.location.href='sorting-quiz.html'"> Let's Go!</button>
+            </div>
+            <div class="game-card get-sorted-game-card">
+                <button onclick="window.location.href='index.html'"> Go Back </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; <span id="year"></span> - Anoushka Ghosh
+    </footer>
+
+    <!-- update the copyright year -->
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

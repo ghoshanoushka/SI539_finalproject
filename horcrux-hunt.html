@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+    <!-- set meta for media query-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- link style css and favicon for the webpage-->
+    <link rel="shortcut icon" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root::before {
+            background: radial-gradient(
+            circle 10vmax at var(--X) var(--Y),
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.8) 80%,
+            rgba(0, 0, 0, 0.98) 100%
+            );
+        }
+    </style>
+
+    <script src="scripts/audio.js"></script>
+    <script src="scripts/wand.js"></script>
+    <script src="scripts/horcrux.js"></script>
+    
+
+    <title>Memory Game</title>
+</head>
+
+<body style="background-image: url('assets/backgrounds/treasure.jpg')">
+    <audio autoplay loop id="player">
+        <source src="assets/audios/HP_theme.mp3">
+    </audio>
+
+    <!-- div for audio controls -->
+    <header class="controls">
+        <button onclick="document.getElementById('player').play()">
+            <img src="./assets/control_buttons/play.svg" alt="Play">
+        </button>
+        <button onclick="document.getElementById('player').pause()">
+            <img src="./assets/control_buttons/pause.svg" alt="Pause">
+        </button>
+        <button onclick=increaseVolume()>
+            <img src="./assets/control_buttons/volup.svg" alt="Volume Up">
+        </button>
+        <button onclick=decreaseVolume()>
+            <img src="./assets/control_buttons/voldown.svg" alt="Volume Down">
+        </button>
+        <button onclick="window.location.href='index.html'">
+            <img src="./assets/control_buttons/home.svg" alt="Home Page">
+        </button>
+    </header>
+
+    <main class="main">
+        <div class="instruction">
+            <p>Toggle your Wand around and collect all the Horcruxes!</p>
+        </div>
+
+        <div class="first">
+            <div class="diary-container">
+                <img class="diary" src="./assets/horcrux/diary.png" alt="Tom Riddle's Diary">
+            </div>
+    
+            <div class="locket-container">
+                <img class="locket" src="./assets/horcrux/locket.png" alt="Locket">
+            </div>
+    
+            <div class="nagini-container">
+                <img class="nagini" src="./assets/horcrux/nagini.png" alt="Nagini">
+            </div>
+        </div>
+    
+        <div class="second">
+            <div class="cup-container">
+                <img class="cup" src="./assets/horcrux/cup.png" alt="Helga Hufflepuff's Cup">
+            </div>
+    
+            <div class="ring-container">
+                <img class="ring" src="./assets/horcrux/ring.png" alt="Ring">
+            </div>
+    
+            <div class="diadem-container">
+                <img class="diadem" src="./assets/horcrux/diadem.png" alt="Diadem">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; <span id="year"></span> - Anoushka Ghosh
+    </footer>
+
+    <!-- update the copyright year -->
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
