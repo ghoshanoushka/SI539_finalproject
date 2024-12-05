@@ -1,4 +1,4 @@
-function playAudio() {
+function manageAudio(){
     const audio = document.getElementById('player');
 
     // Resume from saved time and volume on page load
@@ -8,6 +8,8 @@ function playAudio() {
         const isPageReload = performance.getEntriesByType('navigation')[0].type === 'reload';
         const wasPlaying = localStorage.getItem('audioPlaying') === 'true';
 
+        console.log(savedTime, savedVolume, isPageReload, wasPlaying);
+        
         // Start from beginning only on page reload
         if (isPageReload) {
             audio.currentTime = 0;
@@ -15,10 +17,10 @@ function playAudio() {
             audio.currentTime = parseFloat(savedTime);
         }
 
+        // persist audio setting across pages
         if (savedVolume) {
             audio.volume = parseFloat(savedVolume);
         }
-
 
         // Only play if it was playing before navigation
         if (wasPlaying) {
@@ -38,14 +40,22 @@ function playAudio() {
         localStorage.setItem('audioVolume', audio.volume);
     });
 
-    // Update playing state when play/pause buttons are clicked
-    audio.addEventListener('play', () => {
-        localStorage.setItem('audioPlaying', 'true');
-    });
-
+    // Update playing state when pause button are clicked
     audio.addEventListener('pause', () => {
         localStorage.setItem('audioPlaying', 'false');
     });
 }
 
-document.addEventListener('DOMContentLoaded', playAudio);
+function increaseVolume() {
+    if (document.getElementById('player').volume < 1) {
+        document.getElementById('player').volume += 0.1;
+    }
+}
+
+function decreaseVolume() {
+    if (document.getElementById('player').volume > 0) {
+        document.getElementById('player').volume -= 0.1;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', manageAudio);
