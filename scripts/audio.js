@@ -1,4 +1,4 @@
-function manageAudio(){
+function playAudio() {
     const audio = document.getElementById('player');
 
     // Resume from saved time and volume on page load
@@ -15,10 +15,10 @@ function manageAudio(){
             audio.currentTime = parseFloat(savedTime);
         }
 
-        // persist audio setting across pages
         if (savedVolume) {
             audio.volume = parseFloat(savedVolume);
         }
+
 
         // Only play if it was playing before navigation
         if (wasPlaying) {
@@ -38,22 +38,14 @@ function manageAudio(){
         localStorage.setItem('audioVolume', audio.volume);
     });
 
-    // Update playing state when pause button are clicked
+    // Update playing state when play/pause buttons are clicked
+    audio.addEventListener('play', () => {
+        localStorage.setItem('audioPlaying', 'true');
+    });
+
     audio.addEventListener('pause', () => {
         localStorage.setItem('audioPlaying', 'false');
     });
 }
 
-function increaseVolume() {
-    if (document.getElementById('player').volume < 1) {
-        document.getElementById('player').volume += 0.1;
-    }
-}
-
-function decreaseVolume() {
-    if (document.getElementById('player').volume > 0) {
-        document.getElementById('player').volume -= 0.1;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', manageAudio);
+document.addEventListener('DOMContentLoaded', playAudio);
