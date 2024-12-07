@@ -1,60 +1,75 @@
 function manageAudio(){
     const audio = document.getElementById('player');
 
-    // Resume from saved time and volume on page load
+    // Function to handle first play
+    function handleFirstPlay() {
+        console.log('Handling first play');
+        localStorage.clear();
+        localStorage.setItem('hasVisited', 'true');
+        audio.currentTime = 0;
+        localStorage.setItem('audioCurrentTime', '0');
+    }
+
     window.addEventListener('load', () => {
-        const savedTime = localStorage.getItem('audioCurrentTime');
-        const savedVolume = localStorage.getItem('audioVolume');
-        const isPageReload = performance.getEntriesByType('navigation')[0].type === 'reload';
-        const wasPlaying = localStorage.getItem('audioPlaying') === 'true';
-
-        console.log(savedTime, savedVolume, isPageReload, wasPlaying);
+        const isFirstVisit = !localStorage.getItem('hasVisited');
+        console.log('Is first visit?', isFirstVisit);
         
-        // Start from beginning only on page reload
-        if (isPageReload) {
+        if (isFirstVisit) {
+            // Set up first visit
             audio.currentTime = 0;
-        } else if (savedTime) {
-            audio.currentTime = parseFloat(savedTime);
-        }
-
-        // persist audio setting across pages
-        if (savedVolume) {
-            audio.volume = parseFloat(savedVolume);
-        }
-
-        // Only play if it was playing before navigation
-        if (wasPlaying) {
-            audio.play().catch(e => console.log('Playback prevented:', e));
+            audio.volume = 1;
+            audio.muted = false;
+            
+            // Handle the first play click
+            audio.addEventListener('play', handleFirstPlay, { once: true });
+        } else {
+            // For subsequent visits/navigation, restore the previous state
+            const savedTime = localStorage.getItem('audioCurrentTime');
+            const wasPlaying = localStorage.getItem('audioPlaying') === 'true';
+            const savedVolume = localStorage.getItem('audioVolume');
+            const isMuted = localStorage.getItem('audioMuted') === 'true';
+            
+            if (savedTime) audio.currentTime = parseFloat(savedTime);
+            if (savedVolume) audio.volume = parseFloat(savedVolume);
+            audio.muted = isMuted;
+            
+            if (wasPlaying) {
+                audio.play().catch(e => console.log('Playback prevented:', e));
+            }
         }
     });
 
-    // Save current time, volume, and playing state before navigating away
+    // Save state before page unload
     window.addEventListener('beforeunload', () => {
         localStorage.setItem('audioCurrentTime', audio.currentTime);
-        localStorage.setItem('audioVolume', audio.volume);
         localStorage.setItem('audioPlaying', !audio.paused);
+        localStorage.setItem('audioVolume', audio.volume);
+        localStorage.setItem('audioMuted', audio.muted);
     });
 
-    // Save volume when changed using controls
+    // Save volume settings when changed
     audio.addEventListener('volumechange', () => {
         localStorage.setItem('audioVolume', audio.volume);
-    });
-
-    // Update playing state when pause button are clicked
-    audio.addEventListener('pause', () => {
-        localStorage.setItem('audioPlaying', 'false');
+        localStorage.setItem('audioMuted', audio.muted);
     });
 }
 
+// Volume control functions
 function increaseVolume() {
-    if (document.getElementById('player').volume < 1) {
-        document.getElementById('player').volume += 0.1;
+    const player = document.getElementById('player');
+    if (player.volume < 1) {
+        player.muted = false;
+        player.volume += 0.1;
     }
 }
 
 function decreaseVolume() {
-    if (document.getElementById('player').volume > 0) {
-        document.getElementById('player').volume -= 0.1;
+    const player = document.getElementById('player');
+    if (player.volume > 0) {
+        player.volume -= 0.1;
+        if (player.volume === 0) {
+            player.muted = true;
+        }
     }
 }
 

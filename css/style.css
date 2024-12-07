@@ -238,7 +238,7 @@ footer {
     cursor: inherit;
     font-size: 20px;
     font-family: "Times New Roman", "Arial Narrow", Arial, sans-serif;
-    height: 14vh;
+    height: 12vh;
     vertical-align: middle;
     justify-content: center;
 }
@@ -279,11 +279,12 @@ footer {
 }
 
 /* CSS specifically for memory-game.html */
-.instruction p {
+.instruction-heading {
     background-color: #013a586f;
     text-align: center;
     color: gold;
     font-family: "Times New Roman", Times, serif;
+    font-size: 1.5rem;
     border-radius: 10px;
     position: relative;
     width: fit-content;
@@ -379,4 +380,16 @@ footer {
         margin: auto;
         margin-bottom: 10px;
     }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

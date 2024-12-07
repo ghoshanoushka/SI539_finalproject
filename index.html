@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <audio autoplay loop id="player">
+    <audio loop id="player" preload="auto">
         <source src="assets/audios/HP_theme.mp3">
     </audio>
 
@@ -53,7 +53,8 @@
     <!-- div containing a headline image and game options-->
     <main class="main">
         <div class="headliner">
-            <img src="./assets/HP_text.png" alt="Harry Potter Text">
+            <h1 class="visually-hidden">Harry Potter</h1>
+            <img src="./assets/HP_text.png" alt="Harry Potter Heading">
         </div>
 
         <!-- navigation for different games -->
