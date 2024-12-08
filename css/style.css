@@ -10,12 +10,10 @@
     height: 100%;
     width: 100%;
     position: fixed;
-    background: radial-gradient(
-        circle at 40vh 45vh,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.6) 80%,
-        rgba(0, 0, 0, 0.5) 100%
-    );
+    background: radial-gradient(circle 10vmax at var(--X) var(--Y),
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.5) 100%);
     pointer-events: none;
     z-index: 1;
 }
