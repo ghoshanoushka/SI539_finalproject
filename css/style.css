@@ -213,7 +213,7 @@ footer {
     margin-top: 5vh;
 }
 
-#quizzie ul {
+#quizzie .quiz-step {
     display: none;
     list-style: none;
     padding-inline-start: 0px;
@@ -221,11 +221,11 @@ footer {
     margin: auto;
 }
 
-#quizzie ul.current {
+#quizzie .quiz-step.current {
     display: block;
 }
 
-#quizzie ul button {
+#quizzie .quiz-step button {
     display: inline-block;
     width: 45%;
     border: none;
@@ -243,8 +243,8 @@ footer {
     justify-content: center;
 }
 
-#quizzie ul button:hover,
-#quizzie ul button:focus-within {
+#quizzie .quiz-step button:hover,
+#quizzie .quiz-step button:focus-within {
     color: gold;
     background-color: #01306a;
     transform: scale(1.05);
@@ -373,7 +373,7 @@ footer {
         font-size: 1.17em;
     }
 
-    #quizzie ul button {
+    #quizzie .quiz-step button {
         display: flex;
         flex-direction: column;
         width: 80%;
